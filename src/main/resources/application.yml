@@ -29,6 +29,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-    show-sql: ${SHOW_SQL:true}
+#    show-sql: ${SHOW_SQL:true}
   hateoas:
     use-hal-as-default-json-media-type: false
