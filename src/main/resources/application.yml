@@ -9,8 +9,6 @@ logging:
     com.tdubuis: debug
 
 spring:
-#  main:
-#    banner-mode: off
   sql:
     init:
       mode: always #For generate fakeData with data.sql file
@@ -32,3 +30,7 @@ spring:
 #    show-sql: ${SHOW_SQL:true}
   hateoas:
     use-hal-as-default-json-media-type: false
+  data:
+    web:
+      pageable:
+        max-page-size: 50

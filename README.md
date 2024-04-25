@@ -1,72 +1,53 @@
-# API de Gestion de Liste de Films
+# YnovWebServices : MovieApp
 
 Cette API permet de gérer une liste de films avec leurs catégories associées. Vous pouvez ajouter, supprimer, modifier et récupérer des films, ainsi que gérer les catégories de ces films.
 
-## Prérequis
+## Docker
 
-- Java 17
-- Docker
-- Gradle
-- IntelliJ IDEA (ou tout autre IDE Java compatible)
+### Prérequis
 
-## Installation
+- Avoir docker
+- Avoir un outil permettant d'écrire des caractères sur un CLI
 
-1. Clonez ce dépôt
-2. Ouvrez le projet dans votre IDE préféré (par exemple, IntelliJ IDEA).
+### Utilisation
 
-3. Assurez-vous que Docker est installé et en cours d'exécution sur votre système.
-
-4. Lancez Docker pour démarrer la base de données PostgreSQL utilisée par l'application :
-
-```bash
-docker-compose up -d
+- Cloner le projet
+- Se déplacer dans la racine du projet
+- Executer la commande
+ ```sh
+   docker compose up -d
 ```
 
-## Configuration
+## DevMod
 
-- Assurez-vous que les configurations de la base de données sont correctement définies dans le fichier `application.yml`.
+### Prérequis
 
-## Démarrage
+- Avoir Java 17
+- Avoir Gradle
+- Avoir PostgresSQL
 
-1. Compilez et exécutez l'application depuis votre IDE ou utilisez Gradle en ligne de commande :
+### Utilisation 
 
-```bash
-./gradlew bootRun
-```
+- Cloner le projet
+- Créé une Bdd movieapp dans votre postgrs
+- Ouvrez le projet dans votre IDE préféré (par exemple, IntelliJ IDEA).
+- Dans le `application.yml` vérifier que les configurations postgres sont les bonnes
+- Executer le fichier MovieAppApplication
 
-2. L'application sera déployée sur `http://localhost:8080`.
+L'application sera déployée par défaut sur `http://localhost:8080`
 
-## Points d'accès de l'API
+## Documentations
 
-- Pour obtenir une liste des films : `GET /film/all`
-- Pour ajouter un nouveau film : `POST /film`
-- Pour obtenir un film par son ID : `GET /film/{id}`
-- Pour supprimer un film : `DELETE /film/{id}`
-- Pour mettre à jour un film : `PUT /film/{id}`
+### Swagger (OpenAPI)
 
-- Pour obtenir une liste des catégories : `GET /category/all`
-- Pour ajouter une nouvelle catégorie : `POST /category`
-- Pour obtenir une catégorie par son ID : `GET /category/{id}`
-- Pour supprimer une catégorie : `DELETE /category/{id}`
-- Pour mettre à jour une catégorie : `PUT /category/{id}`
+Vous pouvez consulter la documentation de l'API à l'adresse suivante : http://localhost:8080/api/v1.0/swagger-ui/index.html
 
-- Pour obtenir les catégories d'un film : `GET /film/{id}/categories`
-- Pour obtenir les films d'une catégorie : `GET /category/{id}/films`
-
-## Swagger
-
-Vous pouvez consulter la documentation Swagger de l'API à l'adresse suivante : [Swagger UI](http://localhost:8080/api/v1.0/swagger-ui/index.html)
-
-## Contribuer
-
-Les contributions sont les bienvenues ! Pour toute modification majeure, veuillez d'abord ouvrir une issue pour discuter de ce que vous souhaitez modifier.
+Ou bien la récupérer au format json à l'adresse suivante : http://localhost:8080/api/v1.0/v3/api-docs
 
 ## Auteurs
 
-- Bryan Battu
 - Thomas Dubuis
 - Ancelot Fayolle
-- Adam Ouerfelli
 
 ## Licence
 
