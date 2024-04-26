@@ -1,6 +1,8 @@
 package com.tdubuis.movieapp.config;
 
 import com.tdubuis.movieapp.exception.ElementNotFoundException;
+import com.tdubuis.movieapp.exception.InvalidFileFormatException;
+import com.tdubuis.movieapp.exception.StorageFileNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -41,5 +43,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             errors.put(fieldName, errorMessage);
         });
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errors);
+    }
+
+    @ExceptionHandler(InvalidFileFormatException.class)
+    public ResponseEntity<Object> handleInvalidFileFormatException(InvalidFileFormatException ex) {
+        log.error(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(StorageFileNotFoundException.class)
+    public ResponseEntity<Object> handleStorageFileNotFoundException(StorageFileNotFoundException ex) {
+        log.error(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

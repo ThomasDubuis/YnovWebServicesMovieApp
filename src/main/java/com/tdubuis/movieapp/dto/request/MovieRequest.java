@@ -1,6 +1,7 @@
 package com.tdubuis.movieapp.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.tdubuis.movieapp.dto.utils.Base64File;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,6 +24,8 @@ public class MovieRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
+
+    private Base64File poster;
 
     @Max(value = 5, message = "Note should be between 0 and 5")
     @Min(value = 0, message = "Note should be between 0 and 5")

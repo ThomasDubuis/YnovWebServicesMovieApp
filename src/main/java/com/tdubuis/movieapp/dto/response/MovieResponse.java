@@ -20,13 +20,15 @@ public class MovieResponse extends RepresentationModel<MovieResponse> {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     private Integer note;
+    private String poster;
 
-    public MovieResponse(String id, String name, String description, Date date, Integer note) {
+    public MovieResponse(String id, String name, String description, Date date, Integer note, String poster) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
         this.note = note;
+        this.poster = poster;
 
         Link link = WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder.methodOn(MovieController.class).getMovieById(this.id))

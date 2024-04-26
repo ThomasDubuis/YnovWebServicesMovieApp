@@ -36,6 +36,8 @@ public class Movie {
 
     private Integer note;
 
+    private String poster;
+
     @ManyToMany
     @JoinTable(
             name = "movies_categories",
@@ -44,7 +46,7 @@ public class Movie {
     private List<Category> categories;
 
 
-    public void updateIfNotNull(MovieRequest movieRequest) {
+    public void updateIfNotNull(MovieRequest movieRequest, String poster) {
         if (movieRequest.getName() != null && !movieRequest.getName().isBlank()) {
             this.name = movieRequest.getName();
         }
@@ -56,6 +58,9 @@ public class Movie {
         }
         if (movieRequest.getNote() != null) {
             this.note = movieRequest.getNote();
+        }
+        if (poster != null) {
+            this.poster = poster;
         }
     }
 

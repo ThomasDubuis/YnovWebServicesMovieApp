@@ -17,7 +17,7 @@ public class MovieModelAssembler extends RepresentationModelAssemblerSupport<Mov
 
     @Override
     public MovieResponse toModel(Movie entity) {
-        return new MovieResponse(entity.getId(), entity.getName(), entity.getDescription(), entity.getDate(), entity.getNote());
+        return new MovieResponse(entity.getId(), entity.getName(), entity.getDescription(), entity.getDate(), entity.getNote(), entity.getPoster());
     }
 
     @Override
