@@ -12,8 +12,6 @@ import java.sql.Date;
 @Data
 public class MovieRequest {
 
-    private String id;
-
     @NotBlank(message = "Name can't be empty")
     @Size(max = 128, message = "Name should be between 1 and 128 characters")
     private String name;
