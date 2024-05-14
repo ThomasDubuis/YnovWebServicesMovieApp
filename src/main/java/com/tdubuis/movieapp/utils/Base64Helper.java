@@ -1,15 +1,16 @@
 package com.tdubuis.movieapp.utils;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Slf4j
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Base64Helper {
+public final class Base64Helper {
+
+    private Base64Helper() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
+    }
 
     public static byte[] decodeBase64ToBytes(String base64String) {
         if(base64String.contains(","))

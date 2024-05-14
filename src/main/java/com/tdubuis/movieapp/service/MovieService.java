@@ -31,13 +31,13 @@ public class MovieService {
 
         if (title != null && description != null) {
             // Recherche par titre et description
-           moviesOptional = movieRepository.findAllByNameAndDescription(title, description, pageable);
+           moviesOptional = movieRepository.findAllByNameContainingIgnoreCaseAndDescriptionContainingIgnoreCase(title, description, pageable);
         } else if (title != null) {
             // Recherche par titre
-            moviesOptional = movieRepository.findAllByName(title, pageable);
+            moviesOptional = movieRepository.findAllByNameContainingIgnoreCase(title, pageable);
         } else if (description != null) {
             // Recherche par description
-            moviesOptional = movieRepository.findAllByDescription(description, pageable);
+            moviesOptional = movieRepository.findAllByDescriptionContainingIgnoreCase(description, pageable);
         } else {
             // Aucun paramètre de recherche spécifié, récupérer tous les movies
             return movieRepository.findAll(pageable);

@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface MovieRepository extends JpaRepository<Movie, String> {
 
-    Optional<Page<Movie>> findAllByNameAndDescription(String name, String description, Pageable pageable);
-    Optional<Page<Movie>> findAllByName(String name, Pageable pageable);
-    Optional<Page<Movie>> findAllByDescription(String description, Pageable pageable);
+    Optional<Page<Movie>> findAllByNameContainingIgnoreCaseAndDescriptionContainingIgnoreCase(String name, String description, Pageable pageable);
+    Optional<Page<Movie>> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
+    Optional<Page<Movie>> findAllByDescriptionContainingIgnoreCase(String description, Pageable pageable);
 
 }
