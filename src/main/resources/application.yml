@@ -7,10 +7,6 @@ logging:
     com.tdubuis: debug
 
 spring:
-  servlet:
-    multipart:
-      max-file-size: "128KB"
-      max-request-size: "128KB"
   sql:
     init:
       mode: always #For generate fakeData with data.sql file
@@ -30,8 +26,6 @@ spring:
       hibernate:
         format_sql: true
     show-sql: ${SHOW_SQL:true}
-  hateoas:
-    use-hal-as-default-json-media-type: false
   data:
     web:
       pageable:
