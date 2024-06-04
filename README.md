@@ -1,6 +1,6 @@
 # YnovWebServices : MovieApp
 
-Cette API permet de gérer une liste de films avec leurs catégories associées. Vous pouvez ajouter, supprimer, modifier et récupérer des films, ainsi que gérer les catégories de ces films.
+Cette API permet de gérer une liste de films. Vous pouvez ajouter, supprimer, modifier et récupérer des films.
 
 ## Docker
 
@@ -40,14 +40,16 @@ L'application sera déployée par défaut sur `http://localhost:8080`
 
 ### Swagger (OpenAPI)
 
-Vous pouvez consulter la documentation de l'API à l'adresse suivante : http://localhost:8080/api/v1.0/swagger-ui/index.html
+Vous pouvez consulter la documentation de l'API à l'adresse suivante : http://localhost:8080/swagger-ui/index.html
 
-Ou bien la récupérer au format json à l'adresse suivante : http://localhost:8080/api/v1.0/v3/api-docs
+Ou bien la récupérer au format json à l'adresse suivante : http://localhost:8080/v3/api-docs
 
 ## Auteurs
 
 - Thomas Dubuis
 - Ancelot Fayolle
+- Adam Ouerfelli
+- Bryan Battu
 
 ## Licence
 
