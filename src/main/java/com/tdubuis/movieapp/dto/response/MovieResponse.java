@@ -1,38 +1,23 @@
 package com.tdubuis.movieapp.dto.response;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.tdubuis.movieapp.controller.MovieController;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.RepresentationModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
+@NoArgsConstructor
 @Data
-public class MovieResponse extends RepresentationModel<MovieResponse> {
-    private String id;
+public class MovieResponse {
+    private String uid;
     private String name;
     private String description;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
-    private Integer note;
-    private String poster;
-
-    public MovieResponse(String id, String name, String description, Date date, Integer note, String poster) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.date = date;
-        this.note = note;
-        this.poster = poster;
-
-        Link link = WebMvcLinkBuilder
-                .linkTo(WebMvcLinkBuilder.methodOn(MovieController.class).getMovieById(this.id))
-                .withSelfRel();
-        this.add(link);
-    }
+    private Integer rate;
+    private Integer duration;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSSX")
+    private Date createdAt;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSSX")
+    private Date updatedAt;
 }

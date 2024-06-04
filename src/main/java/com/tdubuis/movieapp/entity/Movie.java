@@ -1,67 +1,75 @@
 package com.tdubuis.movieapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tdubuis.movieapp.dto.request.MovieRequest;
+import com.tdubuis.movieapp.exception.UidAlreadyExistOrNotConformException;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private String uid;
 
     @Column(length = 128)
     private String name;
 
-    @Column(length = 2048)
+    @Column(length = 4096)
     private String description;
 
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date date;
+    private Integer rate;
 
-    private Integer note;
+    private Integer duration;
 
-    private String poster;
+    @CreatedDate
+    private Date createdAt;
 
-    @ManyToMany
-    @JoinTable(
-            name = "movies_categories",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
+    @LastModifiedDate
+    private Date updatedAt;
 
-
-    public void updateIfNotNull(MovieRequest movieRequest, String poster) {
+    public void updateIfNotNull(MovieRequest movieRequest) {
+        if (movieRequest.getUid() != null) {
+            this.uid = movieRequest.getUid();
+        }
         if (movieRequest.getName() != null && !movieRequest.getName().isBlank()) {
             this.name = movieRequest.getName();
         }
         if (movieRequest.getDescription() != null && !movieRequest.getDescription().isBlank()) {
             this.description = movieRequest.getDescription();
         }
-        if (movieRequest.getDate() != null) {
-            this.date = movieRequest.getDate();
+        if (movieRequest.getRate() != null) {
+            this.rate = movieRequest.getRate();
         }
-        if (movieRequest.getNote() != null) {
-            this.note = movieRequest.getNote();
-        }
-        if (poster != null) {
-            this.poster = poster;
+        if (movieRequest.getDuration() != null) {
+            this.duration = movieRequest.getDuration();
         }
     }
 
+    @PrePersist
+    protected void onCreate() {
+        if (Objects.isNull(this.uid)) {
+            this.uid = UUID.randomUUID().toString();
+        } else {
+            try {
+                UUID uuid = UUID.fromString(this.uid);
+                this.uid = uuid.toString();
+            } catch (IllegalArgumentException ex) {
+                throw new UidAlreadyExistOrNotConformException("Uid not conform to UUID V4");
+            }
+        }
+    }
 }

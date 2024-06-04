@@ -1,1 +1,2 @@
 CREATE DATABASE movieapp;
+CREATE DATABASE authapp;

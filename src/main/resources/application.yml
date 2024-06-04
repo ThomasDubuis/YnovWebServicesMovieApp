@@ -1,7 +1,5 @@
 server:
   port: ${PORT:8080}
-  servlet:
-    context-path: /api/v1.0
 logging:
   level:
     org.springframework.web.filter.CommonsRequestLoggingFilter: debug
@@ -31,7 +29,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#    show-sql: ${SHOW_SQL:true}
+    show-sql: ${SHOW_SQL:true}
   hateoas:
     use-hal-as-default-json-media-type: false
   data:
