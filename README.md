@@ -46,8 +46,8 @@ Ou bien la récupérer au format json à l'adresse suivante : http://localhost:8
 
 ## Auteurs
 
-- Thomas Dubuis
-- Ancelot Fayolle
+- Adam OUERFELLI
+- Bryan BATTU
 
 ## Licence
 
